@@ -1,69 +1,20 @@
+"""
+2: Given a CSV listing homes sold, the sale date, and the ZIP code of the home, write a script to print out how many homes were sold each day.
+3: Building on question 2, expand that script to break down the homes sold per day by ZIP code. Your output should look like:
+Date,76325,789123,54375 07/13/2018,4,0,2 08/04/2017,6,9,0
+"""
 
-# coding: utf-8
-
-# In[1]:
-
-
-import pandas as pd
-
-
-# In[28]:
+import csv
 
 
-df=pd.read_excel("C:\Users\Administrator\Desktop\QR-Proximity.xlsx")
+with open('sales_data.csv', 'rb') as csvfile:
+	reader = csv.DictReader(csvfile)
+	for row in reader:
+		row = map(int,(row['Zip1'],row['Zip2'],row['Zip3'],row['Zip4'],row['Zip5']))
+		s = sum(row)
+		print s
 
 
-# In[8]:
 
 
-df.head()
-
-
-# In[11]:
-
-
-Prdata=df['x1'].fillna(0)
-
-
-# In[12]:
-
-
-Prdata.head()
-
-
-# In[23]:
-
-
-trvals=Prdata.str.contains("Proximity").fillna(False)
-
-
-# In[25]:
-
-
-Final=Prdata[trvals]
-
-
-# In[26]:
-
-
-Final.to_excel("C:\Users\Administrator\Desktop\Proximity.xlsx")
-
-
-# In[34]:
-
-
-df.head()
-arval=df['x2']
-
-
-# In[55]:
-
-
-Area=df['x2'].where(df['x2'] <= 1).dropna()
-
-
-# In[59]:
-
-
-Area.to_excel("C:\Users\Administrator\Desktop\Newvals.xlsx")
 
