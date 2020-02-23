@@ -1,0 +1,4 @@
+future
+defusedxml
+namedlist
+pandas
